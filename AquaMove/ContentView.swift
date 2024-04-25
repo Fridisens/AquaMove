@@ -13,11 +13,10 @@ struct ContentView: View {
     let db = Firestore.firestore()
     
     var body: some View {
+        NavigationStack {
+        }
         VStack {
-            Image("First image")
-                .resizable()
-                .imageScale(.small)
-                .foregroundStyle(.tint)
+            
         }.onAppear() {
             //test info till Firebase
             db.collection("habit").addDocument(data: ["Habit:" : "Yoga"])
