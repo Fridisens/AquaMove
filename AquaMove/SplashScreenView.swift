@@ -15,7 +15,7 @@ struct SplashScreenView: View {
         VStack {
             Spacer()
             if isActive {
-                ContentView()
+                TabBarView()
             } else {
                 Image("First image")
                     .resizable()

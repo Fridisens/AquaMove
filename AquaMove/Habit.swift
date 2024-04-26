@@ -6,26 +6,31 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
 class Habit : Identifiable, Codable {
     
-    var id: String = UUID().uuidString
+    @DocumentID var id: String?
+    
     var name : String
     var description : String
-    var isCompleted: Bool = false
     
-    init (name: String, description: String){
+    enum CodingKeys: String, CodingKey {
+            case name, description
+       }
+    
+    init(name: String, description: String) {
         self.name = name
         self.description = description
+       
+    }
+  
         
+   required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+       self.description = try container.decode(String.self, forKey: .description)
+     
     }
-    
-    // Exempeldata
-class HabitsViewModel: ObservableObject {
-    @Published var habits: [Habit] = [
-        Habit(name: "Dricka vatten", description: "Drick 8 glas vatten dagligen"),
-            Habit(name: "Morgonjogg", description: "Spring 30 minuter varje morgon")
-        ]
-    }
-    
 }
+    

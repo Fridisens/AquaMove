@@ -8,11 +8,43 @@
 import SwiftUI
 
 struct GoalsView: View {
-    var body: some View {
-        Text("Mina mål")
-    }
-}
+    @ObservedObject var viewModel = GoalsViewModel()
 
-#Preview {
-    GoalsView()
-}
+    
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(viewModel.dailyGoals) { goal in
+                            DayView(goal: goal)
+                        }
+                    }
+                }
+            }
+        }
+
+        struct DayView: View {
+            var goal: DailyGoal
+
+            var body: some View {
+                VStack {
+                    Text(goal.day)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(goal.goalsCompleted ? Color.green : Color.red)
+                        .cornerRadius(10)
+                    
+                  
+
+                    if goal.goalsCompleted {
+                        Image(systemName: "checkmark.circle")
+                    } else {
+                        Image(systemName: "xmark.circle")
+                        
+                    }
+                    Spacer()
+                }
+        
+                .padding(.horizontal)
+            }
+        }

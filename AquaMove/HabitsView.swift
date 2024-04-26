@@ -27,21 +27,20 @@ struct HabitsView: View {
                 }
             }
             
-            
             Button(action: {
                 showingAddHabit = true
             }) {
                 Image(systemName: "plus.circle.fill")
-                                   .resizable()
-                                   .frame(width: 56, height: 56)
-                                   .background(Color.blue)
-                                   .foregroundColor(.white)
-                                   .clipShape(Circle())
-                                   .padding()
-                           }
-                       }
-                       .sheet(isPresented: $showingAddHabit) {
-                           AddHabitView(habits: $viewModel.habits)
-                       }
-                   }
-               }
+                    .resizable()
+                    .frame(width: 56, height: 56)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .clipShape(Circle())
+                    .padding()
+            }
+        }
+        .sheet(isPresented: $showingAddHabit) {
+            AddHabitView(habits: $viewModel.habits)
+        }
+    }
+}

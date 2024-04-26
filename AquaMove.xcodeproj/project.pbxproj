@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5992BABB2BD8ED7200D27B94 /* AquaMoveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BABA2BD8ED7200D27B94 /* AquaMoveApp.swift */; };
-		5992BABD2BD8ED7200D27B94 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BABC2BD8ED7200D27B94 /* ContentView.swift */; };
 		5992BABF2BD8ED7300D27B94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5992BABE2BD8ED7300D27B94 /* Assets.xcassets */; };
 		5992BAC22BD8ED7300D27B94 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5992BAC12BD8ED7300D27B94 /* Preview Assets.xcassets */; };
 		5992BACC2BD8ED7300D27B94 /* AquaMoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BACB2BD8ED7300D27B94 /* AquaMoveTests.swift */; };
@@ -27,6 +26,8 @@
 		5992BAFE2BDA581500D27B94 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BAFD2BDA581500D27B94 /* TabBarView.swift */; };
 		5992BB022BDA684900D27B94 /* HabitsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB012BDA684900D27B94 /* HabitsViewModel.swift */; };
 		5992BB042BDA6A4B00D27B94 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB032BDA6A4B00D27B94 /* AddHabitView.swift */; };
+		5992BB062BDB897200D27B94 /* DailyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB052BDB897200D27B94 /* DailyGoal.swift */; };
+		5992BB082BDB89EA00D27B94 /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB072BDB89EA00D27B94 /* GoalsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +50,6 @@
 /* Begin PBXFileReference section */
 		5992BAB72BD8ED7200D27B94 /* AquaMove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AquaMove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5992BABA2BD8ED7200D27B94 /* AquaMoveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AquaMoveApp.swift; sourceTree = "<group>"; };
-		5992BABC2BD8ED7200D27B94 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5992BABE2BD8ED7300D27B94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5992BAC12BD8ED7300D27B94 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5992BAC72BD8ED7300D27B94 /* AquaMoveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AquaMoveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +67,8 @@
 		5992BAFD2BDA581500D27B94 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		5992BB012BDA684900D27B94 /* HabitsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewModel.swift; sourceTree = "<group>"; };
 		5992BB032BDA6A4B00D27B94 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
+		5992BB052BDB897200D27B94 /* DailyGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoal.swift; sourceTree = "<group>"; };
+		5992BB072BDB89EA00D27B94 /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,22 +122,23 @@
 		5992BAB92BD8ED7200D27B94 /* AquaMove */ = {
 			isa = PBXGroup;
 			children = (
+				5992BABA2BD8ED7200D27B94 /* AquaMoveApp.swift */,
+				5992BAEF2BDA4CB000D27B94 /* SplashScreenView.swift */,
+				5992BB052BDB897200D27B94 /* DailyGoal.swift */,
 				5992BAF12BDA501100D27B94 /* Habit.swift */,
 				5992BAF52BDA534600D27B94 /* WellnessHabit.swift */,
+				5992BAF32BDA533000D27B94 /* WaterIntakeHabit.swift */,
+				5992BAFD2BDA581500D27B94 /* TabBarView.swift */,
+				5992BAF92BDA57AA00D27B94 /* GoalsView.swift */,
+				5992BAFB2BDA57BC00D27B94 /* HabitsView.swift */,
+				5992BB032BDA6A4B00D27B94 /* AddHabitView.swift */,
+				5992BB012BDA684900D27B94 /* HabitsViewModel.swift */,
+				5992BB072BDB89EA00D27B94 /* GoalsViewModel.swift */,
 				5992BAF82BDA575100D27B94 /* Views */,
 				5992BAF72BDA573A00D27B94 /* Models and Class */,
 				5992BAEB2BD900DD00D27B94 /* GoogleService-Info.plist */,
-				5992BABA2BD8ED7200D27B94 /* AquaMoveApp.swift */,
-				5992BABC2BD8ED7200D27B94 /* ContentView.swift */,
 				5992BABE2BD8ED7300D27B94 /* Assets.xcassets */,
 				5992BAC02BD8ED7300D27B94 /* Preview Content */,
-				5992BAEF2BDA4CB000D27B94 /* SplashScreenView.swift */,
-				5992BAF32BDA533000D27B94 /* WaterIntakeHabit.swift */,
-				5992BAF92BDA57AA00D27B94 /* GoalsView.swift */,
-				5992BAFB2BDA57BC00D27B94 /* HabitsView.swift */,
-				5992BAFD2BDA581500D27B94 /* TabBarView.swift */,
-				5992BB012BDA684900D27B94 /* HabitsViewModel.swift */,
-				5992BB032BDA6A4B00D27B94 /* AddHabitView.swift */,
 			);
 			path = AquaMove;
 			sourceTree = "<group>";
@@ -318,17 +321,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5992BABD2BD8ED7200D27B94 /* ContentView.swift in Sources */,
 				5992BAFE2BDA581500D27B94 /* TabBarView.swift in Sources */,
 				5992BAFC2BDA57BC00D27B94 /* HabitsView.swift in Sources */,
 				5992BAF62BDA534600D27B94 /* WellnessHabit.swift in Sources */,
 				5992BB042BDA6A4B00D27B94 /* AddHabitView.swift in Sources */,
 				5992BABB2BD8ED7200D27B94 /* AquaMoveApp.swift in Sources */,
+				5992BB082BDB89EA00D27B94 /* GoalsViewModel.swift in Sources */,
 				5992BB022BDA684900D27B94 /* HabitsViewModel.swift in Sources */,
 				5992BAF22BDA501100D27B94 /* Habit.swift in Sources */,
 				5992BAFA2BDA57AA00D27B94 /* GoalsView.swift in Sources */,
 				5992BAF02BDA4CB000D27B94 /* SplashScreenView.swift in Sources */,
 				5992BAF42BDA533000D27B94 /* WaterIntakeHabit.swift in Sources */,
+				5992BB062BDB897200D27B94 /* DailyGoal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
