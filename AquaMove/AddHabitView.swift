@@ -12,20 +12,14 @@ struct AddHabitView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var habits: [Habit]
     
+    @State private var selectedDay: String = "Måndag"
+    @State private var selectedTime: Date = Date()
+    
     @State private var selectedCategory = "Vatten"
     @State private var name: String = ""
     @State private var description: String = ""
     @State private var goalText: String = ""
     
-    @State private var days: [DaySelection] = [
-        DaySelection(name: "Måndag", isSelected: false),
-        DaySelection(name: "Tisdag", isSelected: false),
-        DaySelection(name: "Onsdag", isSelected: false),
-        DaySelection(name: "Torsdag", isSelected: false),
-        DaySelection(name: "Fredag", isSelected: false),
-        DaySelection(name: "Lördag", isSelected: false),
-        DaySelection(name: "Söndag", isSelected: false)
-    ]
     
     
     var columns: [GridItem] = [
@@ -57,18 +51,28 @@ struct AddHabitView: View {
                     }
                 }
                 
-                Section(header: Text("Välj dagar")) {
-                    LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach($days) { $day in
-                            DayButton(day: $day)
-                        }
+                Section(header: Text("Välj dag")) {
+                    Picker("Dag", selection: $selectedDay) {
+                        Text("Måndag").tag("Måndag")
+                        Text("Tisdag").tag("Tisdag")
+                        Text("Onsdag").tag("Onsdag")
+                        Text("Torsdag").tag("Torsdag")
+                        Text("Fredag").tag("Fredag")
+                        Text("Lördag").tag("Lördag")
+                        Text("Söndag").tag("Söndag")
                     }
+                   
+                    .pickerStyle(MenuPickerStyle()) // eller .pickerStyle(WheelPickerStyle())
                 }
                 
-                
+                Section(header: Text("Välj tid")) {
+                    DatePicker("Tid", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                        .labelsHidden()
+                }
                 
                 Button("Lägg till vana") {
-                    addHabit()
+                    let newHabit = Habit(name: name, description: description, day: selectedDay, time: selectedTime)
+                    habits.append(newHabit)
                     presentationMode.wrappedValue.dismiss()
                 }
             }
@@ -80,14 +84,14 @@ struct AddHabitView: View {
     }
     
     func addHabit() {
-        let goalValue = Double(goalText) ?? 0
-        let selectedDays = days.filter { $0.isSelected }.map { $0.name }
+        let goalValue = Double(goalText) ?? 0  // Fortsätt att tolka målvärdet från text
         let newHabit: Habit
         if selectedCategory == "Vatten" {
-            newHabit = WaterIntakeHabit(name: name, description: description, goal: goalValue)
+            newHabit = WaterIntakeHabit(name: name, description: description, goal: goalValue, day: selectedDay, time: selectedTime)
         } else {
-            newHabit = WellnessHabit(name: name, description: description, sessionLength: goalValue)
+            newHabit = WellnessHabit(name: name, description: description, sessionLength: goalValue, day: selectedDay, time: selectedTime)
         }
         habits.append(newHabit)
     }
+    
 }

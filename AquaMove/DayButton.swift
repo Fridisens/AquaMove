@@ -16,9 +16,9 @@ struct DayButton: View {
             day.isSelected.toggle()
         }) {
             Text(day.name)
-                .foregroundColor(.white)
+                .foregroundColor(day.isSelected ? .white : .black)
                 .padding()
-                .frame(minWidth: 0, maxWidth: .infinity)
+                //.frame(minWidth: 0, maxWidth: .infinity)
                 .background(day.isSelected ? Color.green : Color.gray)
                 .cornerRadius(10)
         }

@@ -35,7 +35,7 @@ class HabitsViewModel: ObservableObject {
                 print("Error getting documents: \(error.localizedDescription)")
             } else {
                 self.habits = querySnapshot!.documents.compactMap { document in
-                    var habit = try? document.data(as: Habit.self)
+                    let habit = try? document.data(as: Habit.self)
                     habit?.id = document.documentID
                     return habit
                 }

@@ -6,14 +6,20 @@
 //
 
 import Foundation
+import SwiftUI
 
 class WellnessHabit : Habit {
     var sessionLength: Double
     var unit: String = "minuter"
-    
-    init(name: String, description: String, sessionLength: Double) {
+   
+
+    init(name: String, description: String, sessionLength: Double, day: String, time: Date) {
         self.sessionLength = sessionLength
-        super.init(name: name, description: description, days: [])
+        
+        
+        super.init(name: name, description: description, day: day, time: time)
+  
+    
     }
     
     required init(from decoder: Decoder) throws {

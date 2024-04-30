@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct DaySelection: Identifiable {
     let id = UUID()
     let name: String
-    var isSelected: Bool = false
+    var isSelected: Bool
 }
