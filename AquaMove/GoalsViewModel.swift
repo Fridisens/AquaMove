@@ -10,6 +10,7 @@ import SwiftUI
 class GoalsViewModel: ObservableObject {
     
     @Published var dailyGoals: [DailyGoal] = []
+    @Published var goalsForSelectedDay: [DailyGoal]?  // Lagrar vanor för valt datum
     
     init(){
         setupGoals()
@@ -25,5 +26,15 @@ class GoalsViewModel: ObservableObject {
             return DailyGoal(day: day, date: date, goalsCompleted: false)
         }
     }
-}
+    
+    func loadGoals() {
+           // Här skulle du ladda alla tillgängliga vanor från din databas eller annan datakälla
+       }
+
+       func loadGoals(for date: Date) {
+           // Filtrera dailyGoals för att matcha valt datum
+           goalsForSelectedDay = dailyGoals.filter { Calendar.current.isDate($0.date, inSameDayAs: date) }
+       }
+   }
+
 

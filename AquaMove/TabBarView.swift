@@ -10,10 +10,12 @@ import Firebase
 
 struct TabBarView: View {
     let db = Firestore.firestore()
+    let goalsViewModel = GoalsViewModel()
+    
     
     var body: some View {
         TabView {
-            GoalsView()
+            GoalsView(viewModel: goalsViewModel)
                 .tabItem {
                     Label("Mina mål", systemImage: "heart")
                 }

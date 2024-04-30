@@ -8,44 +8,36 @@
 import SwiftUI
 
 struct GoalsView: View {
-    @ObservedObject var viewModel = GoalsViewModel()
-    
-    
+    @ObservedObject var viewModel: GoalsViewModel
+    @State private var selectedDate = Date()  // Håller reda på det valda datumet
+
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(viewModel.dailyGoals) { goal in
-                    DayView(goal: goal)
+        NavigationStack {
+            VStack {
+                DatePicker(
+                    "Välj ett datum",
+                    selection: $selectedDate,
+                    displayedComponents: .date
+                )
+                .datePickerStyle(GraphicalDatePickerStyle()) // Visar en kalender där användare kan välja datum
+                .padding()
+
+                Button("Visa vanor för dagen") {
+                    // Här kan du lägga till logik för att ladda data om vanorna för valt datum
+                    viewModel.loadGoals(for: selectedDate)
+                }
+                .padding()
+
+                if let goals = viewModel.goalsForSelectedDay {
+                    List(goals, id: \.id) { goal in
+                        GoalRow(goal: goal)
+                    }
+                } else {
+                    Text("Inga vanor planerade för denna dag.")
+                        .foregroundColor(.gray)
                 }
             }
+            .navigationTitle("Dina vanor")
         }
-    }
-}
-
-struct DayView: View {
-    var goal: DailyGoal
-    
-    var body: some View {
-        VStack {
-            Text(goal.day)
-                .font(.headline)
-                .foregroundColor(.white)
-                .padding()
-                .background(goal.goalsCompleted ? Color.green : Color.red)
-                .cornerRadius(10)
-            
-            Text(goal.date.formatted())
-                .font(.subheadline)
-                .foregroundColor(.white)
-            
-            if goal.goalsCompleted {
-                Image(systemName: "checkmark.circle")
-            } else {
-                Image(systemName: "xmark.circle")
-            }
-            Spacer()
-            
-        }
-        .padding(.horizontal)
     }
 }

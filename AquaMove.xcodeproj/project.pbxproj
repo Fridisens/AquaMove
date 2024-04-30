@@ -30,7 +30,7 @@
 		5992BB082BDB89EA00D27B94 /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB072BDB89EA00D27B94 /* GoalsViewModel.swift */; };
 		5992BB0C2BDFC65200D27B94 /* DaySelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB0B2BDFC65200D27B94 /* DaySelection.swift */; };
 		5992BB102BDFCA6000D27B94 /* DayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB0F2BDFCA6000D27B94 /* DayButton.swift */; };
-		5992BB142BDFD23400D27B94 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB132BDFD23400D27B94 /* DateExtensions.swift */; };
+		5992BB162BE0F58700D27B94 /* GoalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB152BE0F58700D27B94 /* GoalRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +74,7 @@
 		5992BB072BDB89EA00D27B94 /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
 		5992BB0B2BDFC65200D27B94 /* DaySelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySelection.swift; sourceTree = "<group>"; };
 		5992BB0F2BDFCA6000D27B94 /* DayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayButton.swift; sourceTree = "<group>"; };
-		5992BB132BDFD23400D27B94 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		5992BB152BE0F58700D27B94 /* GoalRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,10 +130,10 @@
 			children = (
 				5992BABA2BD8ED7200D27B94 /* AquaMoveApp.swift */,
 				5992BAEF2BDA4CB000D27B94 /* SplashScreenView.swift */,
+				5992BB152BE0F58700D27B94 /* GoalRow.swift */,
 				5992BB052BDB897200D27B94 /* DailyGoal.swift */,
 				5992BB0F2BDFCA6000D27B94 /* DayButton.swift */,
 				5992BB0B2BDFC65200D27B94 /* DaySelection.swift */,
-				5992BB132BDFD23400D27B94 /* DateExtensions.swift */,
 				5992BAF12BDA501100D27B94 /* Habit.swift */,
 				5992BAF52BDA534600D27B94 /* WellnessHabit.swift */,
 				5992BAF32BDA533000D27B94 /* WaterIntakeHabit.swift */,
@@ -331,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5992BAFE2BDA581500D27B94 /* TabBarView.swift in Sources */,
+				5992BB162BE0F58700D27B94 /* GoalRow.swift in Sources */,
 				5992BAFC2BDA57BC00D27B94 /* HabitsView.swift in Sources */,
 				5992BAF62BDA534600D27B94 /* WellnessHabit.swift in Sources */,
 				5992BB042BDA6A4B00D27B94 /* AddHabitView.swift in Sources */,
@@ -341,7 +342,6 @@
 				5992BAF22BDA501100D27B94 /* Habit.swift in Sources */,
 				5992BAFA2BDA57AA00D27B94 /* GoalsView.swift in Sources */,
 				5992BAF02BDA4CB000D27B94 /* SplashScreenView.swift in Sources */,
-				5992BB142BDFD23400D27B94 /* DateExtensions.swift in Sources */,
 				5992BAF42BDA533000D27B94 /* WaterIntakeHabit.swift in Sources */,
 				5992BB0C2BDFC65200D27B94 /* DaySelection.swift in Sources */,
 				5992BB062BDB897200D27B94 /* DailyGoal.swift in Sources */,
