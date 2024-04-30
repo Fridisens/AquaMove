@@ -28,6 +28,9 @@
 		5992BB042BDA6A4B00D27B94 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB032BDA6A4B00D27B94 /* AddHabitView.swift */; };
 		5992BB062BDB897200D27B94 /* DailyGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB052BDB897200D27B94 /* DailyGoal.swift */; };
 		5992BB082BDB89EA00D27B94 /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB072BDB89EA00D27B94 /* GoalsViewModel.swift */; };
+		5992BB0C2BDFC65200D27B94 /* DaySelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB0B2BDFC65200D27B94 /* DaySelection.swift */; };
+		5992BB102BDFCA6000D27B94 /* DayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB0F2BDFCA6000D27B94 /* DayButton.swift */; };
+		5992BB142BDFD23400D27B94 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5992BB132BDFD23400D27B94 /* DateExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		5992BB032BDA6A4B00D27B94 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		5992BB052BDB897200D27B94 /* DailyGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoal.swift; sourceTree = "<group>"; };
 		5992BB072BDB89EA00D27B94 /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
+		5992BB0B2BDFC65200D27B94 /* DaySelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySelection.swift; sourceTree = "<group>"; };
+		5992BB0F2BDFCA6000D27B94 /* DayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayButton.swift; sourceTree = "<group>"; };
+		5992BB132BDFD23400D27B94 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,9 @@
 				5992BABA2BD8ED7200D27B94 /* AquaMoveApp.swift */,
 				5992BAEF2BDA4CB000D27B94 /* SplashScreenView.swift */,
 				5992BB052BDB897200D27B94 /* DailyGoal.swift */,
+				5992BB0F2BDFCA6000D27B94 /* DayButton.swift */,
+				5992BB0B2BDFC65200D27B94 /* DaySelection.swift */,
+				5992BB132BDFD23400D27B94 /* DateExtensions.swift */,
 				5992BAF12BDA501100D27B94 /* Habit.swift */,
 				5992BAF52BDA534600D27B94 /* WellnessHabit.swift */,
 				5992BAF32BDA533000D27B94 /* WaterIntakeHabit.swift */,
@@ -134,10 +143,10 @@
 				5992BB032BDA6A4B00D27B94 /* AddHabitView.swift */,
 				5992BB012BDA684900D27B94 /* HabitsViewModel.swift */,
 				5992BB072BDB89EA00D27B94 /* GoalsViewModel.swift */,
-				5992BAF82BDA575100D27B94 /* Views */,
-				5992BAF72BDA573A00D27B94 /* Models and Class */,
 				5992BAEB2BD900DD00D27B94 /* GoogleService-Info.plist */,
 				5992BABE2BD8ED7300D27B94 /* Assets.xcassets */,
+				5992BAF72BDA573A00D27B94 /* Models and Class */,
+				5992BAF82BDA575100D27B94 /* Views */,
 				5992BAC02BD8ED7300D27B94 /* Preview Content */,
 			);
 			path = AquaMove;
@@ -327,11 +336,14 @@
 				5992BB042BDA6A4B00D27B94 /* AddHabitView.swift in Sources */,
 				5992BABB2BD8ED7200D27B94 /* AquaMoveApp.swift in Sources */,
 				5992BB082BDB89EA00D27B94 /* GoalsViewModel.swift in Sources */,
+				5992BB102BDFCA6000D27B94 /* DayButton.swift in Sources */,
 				5992BB022BDA684900D27B94 /* HabitsViewModel.swift in Sources */,
 				5992BAF22BDA501100D27B94 /* Habit.swift in Sources */,
 				5992BAFA2BDA57AA00D27B94 /* GoalsView.swift in Sources */,
 				5992BAF02BDA4CB000D27B94 /* SplashScreenView.swift in Sources */,
+				5992BB142BDFD23400D27B94 /* DateExtensions.swift in Sources */,
 				5992BAF42BDA533000D27B94 /* WaterIntakeHabit.swift in Sources */,
+				5992BB0C2BDFC65200D27B94 /* DaySelection.swift in Sources */,
 				5992BB062BDB897200D27B94 /* DailyGoal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,13 +9,21 @@ import SwiftUI
 
 class GoalsViewModel: ObservableObject {
     
-    @Published var dailyGoals: [DailyGoal] = [
-            DailyGoal(day: "Måndag", goalsCompleted: true),
-            DailyGoal(day: "Tisdag", goalsCompleted: false),
-            DailyGoal(day: "Onsdag", goalsCompleted: true),
-            DailyGoal(day: "Torsdag", goalsCompleted: true),
-            DailyGoal(day: "Fredag", goalsCompleted: false),
-            DailyGoal(day: "Lördag", goalsCompleted: true),
-            DailyGoal(day: "Söndag", goalsCompleted: true),
-        ]
+    @Published var dailyGoals: [DailyGoal] = []
+    
+    init(){
+        setupGoals()
     }
+    
+    private func setupGoals() {
+        let calendar = Calendar.current
+        let today = Date()
+        let weekDays = ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"]
+        
+        dailyGoals = weekDays.enumerated().map { index, day in
+            let date = calendar.date(byAdding: .day, value: index, to: today)!
+            return DailyGoal(day: day, date: date, goalsCompleted: false)
+        }
+    }
+}
+

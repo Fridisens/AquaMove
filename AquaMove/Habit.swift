@@ -10,27 +10,27 @@ import FirebaseFirestoreSwift
 
 class Habit : Identifiable, Codable {
     
-    @DocumentID var id: String?
-    
+    var id: String = UUID().uuidString
     var name : String
     var description : String
     
-    enum CodingKeys: String, CodingKey {
-            case name, description
-       }
     
-    init(name: String, description: String) {
+    enum CodingKeys: String, CodingKey {
+        case name, description
+    }
+    
+    init(name: String, description: String,days: [String]) {
         self.name = name
         self.description = description
-       
-    }
-  
         
-   required init(from decoder: Decoder) throws {
+    }
+    
+    
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
-       self.description = try container.decode(String.self, forKey: .description)
-     
+        self.description = try container.decode(String.self, forKey: .description)
+        
     }
 }
-    
+

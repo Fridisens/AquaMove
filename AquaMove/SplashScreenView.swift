@@ -29,7 +29,7 @@ struct SplashScreenView: View {
                             
                         }
                     }
-                    
+                
             }
             Spacer()
         }

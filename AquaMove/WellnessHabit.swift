@@ -7,13 +7,13 @@
 
 import Foundation
 
-class WellnessHabit: Habit {
-    var sessionLength: Double // minutes
+class WellnessHabit : Habit {
+    var sessionLength: Double
     var unit: String = "minuter"
     
     init(name: String, description: String, sessionLength: Double) {
         self.sessionLength = sessionLength
-        super.init(name: name, description: description)
+        super.init(name: name, description: description, days: [])
     }
     
     required init(from decoder: Decoder) throws {

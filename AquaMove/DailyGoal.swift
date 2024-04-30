@@ -6,8 +6,10 @@
 //
 
 import Foundation
+
 struct DailyGoal: Identifiable {
     var id: UUID = UUID()
     var day: String
-    var goalsCompleted: Bool
+    var date: Date
+    var goalsCompleted : Bool
 }

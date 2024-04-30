@@ -11,27 +11,20 @@ import Firebase
 struct TabBarView: View {
     let db = Firestore.firestore()
     
-    init() {
-           
-           UITabBar.appearance().barTintColor = UIColor(red: 93/255, green: 197/255, blue: 182/255, alpha: 1)
-           // text colour
-           UITabBar.appearance().unselectedItemTintColor = UIColor.black
-       }
-       
-       var body: some View {
-           TabView {
-               GoalsView()
-                   .tabItem {
-                       Label("Mina mål", systemImage: "heart")
-                   }
-               
-               HabitsView()
-                   .tabItem {
-                       Label("Vanor", systemImage: "drop")
-                   }
-           }
-       }
-   }
+    var body: some View {
+        TabView {
+            GoalsView()
+                .tabItem {
+                    Label("Mina mål", systemImage: "heart")
+                }
+            
+            HabitsView()
+                .tabItem {
+                    Label("Vanor", systemImage: "drop")
+                }
+        }
+    }
+}
 
 #Preview {
     TabBarView()
