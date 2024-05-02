@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class Habit : Identifiable, Codable {
-    
-    var id: String = UUID().uuidString
+
+class Habit : Codable, Identifiable {
+    var id: String?
+    //var id: String = UUID().uuidString
     var name : String
     var description : String
     var day : String
@@ -19,7 +21,7 @@ class Habit : Identifiable, Codable {
     
     
     enum CodingKeys: String, CodingKey {
-        case name, description, day, time
+        case id, name, description, day, time
     }
     
     init(name: String, description: String, day: String, time: Date) {

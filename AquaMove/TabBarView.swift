@@ -19,14 +19,18 @@ struct TabBarView: View {
                 .tabItem {
                     Label("Mina mål", systemImage: "heart")
                 }
+                
             
             HabitsView()
                 .tabItem {
                     Label("Vanor", systemImage: "drop")
                 }
+            
+        }
+            
         }
     }
-}
+
 
 #Preview {
     TabBarView()

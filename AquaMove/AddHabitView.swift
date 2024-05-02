@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct AddHabitView: View {
     
@@ -19,6 +20,8 @@ struct AddHabitView: View {
     @State private var name: String = ""
     @State private var description: String = ""
     @State private var goalText: String = ""
+    
+    let db = Firestore.firestore()
     
     
     
@@ -61,7 +64,7 @@ struct AddHabitView: View {
                         Text("Lördag").tag("Lördag")
                         Text("Söndag").tag("Söndag")
                     }
-                   
+                    
                     .pickerStyle(MenuPickerStyle()) // eller .pickerStyle(WheelPickerStyle())
                 }
                 
@@ -71,27 +74,34 @@ struct AddHabitView: View {
                 }
                 
                 Button("Lägg till vana") {
-                    let newHabit = Habit(name: name, description: description, day: selectedDay, time: selectedTime)
-                    habits.append(newHabit)
-                    presentationMode.wrappedValue.dismiss()
+                    addHabit()
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }
+                .navigationTitle("Ny Vana")
+                .navigationBarItems(trailing: Button("Stäng") {
+                    presentationMode.wrappedValue.dismiss()
+                })
             }
-            .navigationTitle("Ny Vana")
-            .navigationBarItems(trailing: Button("Stäng") {
-                presentationMode.wrappedValue.dismiss()
-            })
         }
-    }
     
-    func addHabit() {
-        let goalValue = Double(goalText) ?? 0  // Fortsätt att tolka målvärdet från text
-        let newHabit: Habit
-        if selectedCategory == "Vatten" {
-            newHabit = WaterIntakeHabit(name: name, description: description, goal: goalValue, day: selectedDay, time: selectedTime)
-        } else {
-            newHabit = WellnessHabit(name: name, description: description, sessionLength: goalValue, day: selectedDay, time: selectedTime)
+        
+        func addHabit() {
+            let newHabit = Habit(name: name, description: description, day: selectedDay, time: selectedTime)
+            habits.append(newHabit)
+            do {
+                try db.collection("habit").document(newHabit.id ?? UUID().uuidString).setData(from: newHabit) { error in
+                    if let error = error {
+                        print("Error adding document: \(error.localizedDescription)")
+                    } else {
+                        print("Document successfully added.")
+                    }
+                }
+            } catch let error {
+                print("Error writing habit to Firestore: \(error.localizedDescription)")
+            }
+         
         }
-        habits.append(newHabit)
+        
     }
-    
-}
+

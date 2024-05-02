@@ -7,40 +7,49 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 class HabitsViewModel: ObservableObject {
     @Published var habits: [Habit] = []
+    
     private var db = Firestore.firestore()
     
-    
-    func addHabit(habit: Habit) {
-        do {
-            let ref = try db.collection("habits").addDocument(from: habit)
-            ref.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    print("Document data: \(String(describing: document.data()))")
-                } else {
-                    print("Document does not exist")
-                }
-            }
-            print("Habit added with ID: \(ref.documentID)")
-        } catch let error {
-            print("Error saving habit to Firestore: \(error.localizedDescription)")
-        }
+    init() {
+        loadHabits()
     }
+    
+    //    func addHabit(habit: Habit) {
+    //        let newHabit = Habit(name: name, description: description, day: selectedDay, time: selectedTime)
+    //        habits.append(newHabit)
+    //        do {
+    //            try db.collection("habit").document(newHabit.id ?? UUID().uuidString).setData(from: newHabit) { error in
+    //                if let error = error {
+    //                    print("Error adding document: \(error.localizedDescription)")
+    //                } else {
+    //                    print("Document successfully added.")
+    //                }
+    //            }
+    //        } catch let error {
+    //            print("Error writing habit to Firestore: \(error.localizedDescription)")
+    //        }
+    //
+    //    }
+    
+    
     
     func loadHabits() {
-        db.collection("habits").getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error.localizedDescription)")
+        db.collection("habit").getDocuments { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
             } else {
-                self.habits = querySnapshot!.documents.compactMap { document in
-                    let habit = try? document.data(as: Habit.self)
-                    habit?.id = document.documentID
-                    return habit
+                DispatchQueue.main.async { 
+                    self.habits = querySnapshot!.documents.compactMap { document in
+                        let habit = try? document.data(as: Habit.self)
+                        habit?.id = document.documentID  // Tilldela Firestore dokument-ID
+                        return habit
+                    }
                 }
             }
         }
     }
-    
 }
