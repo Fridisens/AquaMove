@@ -13,7 +13,9 @@ struct AddHabitView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var habits: [Habit]
     
-    @State private var selectedDay: String = "Måndag"
+    @State private var days: [DaySelection] = [
+        "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"
+    ].map { DaySelection(name: $0, isSelected: false) }
     @State private var selectedTime: Date = Date()
     
     @State private var selectedCategory = "Vatten"
@@ -54,18 +56,12 @@ struct AddHabitView: View {
                     }
                 }
                 
-                Section(header: Text("Välj dag")) {
-                    Picker("Dag", selection: $selectedDay) {
-                        Text("Måndag").tag("Måndag")
-                        Text("Tisdag").tag("Tisdag")
-                        Text("Onsdag").tag("Onsdag")
-                        Text("Torsdag").tag("Torsdag")
-                        Text("Fredag").tag("Fredag")
-                        Text("Lördag").tag("Lördag")
-                        Text("Söndag").tag("Söndag")
+                Section(header: Text("Välj dagar")) {
+                    ForEach($days) { $day in
+                        Toggle(isOn: $day.isSelected) {
+                            Text(day.name)
+                        }
                     }
-                    
-                    .pickerStyle(MenuPickerStyle()) // eller .pickerStyle(WheelPickerStyle())
                 }
                 
                 Section(header: Text("Välj tid")) {
@@ -75,33 +71,35 @@ struct AddHabitView: View {
                 
                 Button("Lägg till vana") {
                     addHabit()
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                }
-                .navigationTitle("Ny Vana")
-                .navigationBarItems(trailing: Button("Stäng") {
                     presentationMode.wrappedValue.dismiss()
-                })
-            }
-        }
-    
-        
-        func addHabit() {
-            let newHabit = Habit(name: name, description: description, day: selectedDay, time: selectedTime)
-            habits.append(newHabit)
-            do {
-                try db.collection("habit").document(newHabit.id ?? UUID().uuidString).setData(from: newHabit) { error in
-                    if let error = error {
-                        print("Error adding document: \(error.localizedDescription)")
-                    } else {
-                        print("Document successfully added.")
-                    }
                 }
-            } catch let error {
-                print("Error writing habit to Firestore: \(error.localizedDescription)")
             }
-         
+            .navigationTitle("Ny Vana")
+            .navigationBarItems(trailing: Button("Stäng") {
+                presentationMode.wrappedValue.dismiss()
+            })
+        }
+    }
+    
+    
+    func addHabit() {
+        let selectedDays = days.filter { $0.isSelected }.map { $0.name }.joined(separator: ", ")
+        let newHabit = Habit(name: name, description: description, days: selectedDays, time: selectedTime)
+        habits.append(newHabit)
+        do {
+            try db.collection("habit").document(newHabit.id ?? UUID().uuidString).setData(from: newHabit) { error in
+                if let error = error {
+                    print("Error adding document: \(error.localizedDescription)")
+                } else {
+                    print("Document successfully added.")
+                }
+            }
+        } catch let error {
+            print("Error writing habit to Firestore: \(error.localizedDescription)")
         }
         
     }
-
+    
+    
+    
+}

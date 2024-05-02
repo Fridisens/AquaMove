@@ -13,11 +13,11 @@ class WellnessHabit : Habit {
     var unit: String = "minuter"
    
 
-    init(name: String, description: String, sessionLength: Double, day: String, time: Date) {
+    init(name: String, description: String, sessionLength: Double, days: String, time: Date) {
         self.sessionLength = sessionLength
         
         
-        super.init(name: name, description: description, day: day, time: time)
+        super.init(name: name, description: description, days: days, time: time)
   
     
     }

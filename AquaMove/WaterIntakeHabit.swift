@@ -13,11 +13,11 @@ class WaterIntakeHabit : Habit {
     var unit: String = "liter"
     
     
-    init(name: String, description: String, goal: Double, day: String, time: Date) {
+    init(name: String, description: String, goal: Double, days: String, time: Date) {
         self.goal = goal
       
         
-        super.init(name: name, description: description, day: day, time: time)
+        super.init(name: name, description: description, days: days, time: time)
     }
 
     

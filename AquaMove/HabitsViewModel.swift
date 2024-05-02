@@ -11,13 +11,14 @@ import FirebaseFirestore
 
 class HabitsViewModel: ObservableObject {
     @Published var habits: [Habit] = []
+  
     
     private var db = Firestore.firestore()
     
     init() {
         loadHabits()
     }
-    
+
     //    func addHabit(habit: Habit) {
     //        let newHabit = Habit(name: name, description: description, day: selectedDay, time: selectedTime)
     //        habits.append(newHabit)

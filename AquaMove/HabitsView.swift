@@ -26,6 +26,7 @@ struct HabitsView: View {
                                 .font(.headline)
                             Text(habit.description)
                                 .font(.subheadline)
+                            Text(habit.days)
                             if let waterHabit = habit as? WaterIntakeHabit {
                                 Text("Mål: \(waterHabit.goal, specifier: "%.0f") liter")
                             } else if let wellnessHabit = habit as? WellnessHabit {
