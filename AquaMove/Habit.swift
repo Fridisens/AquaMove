@@ -25,11 +25,12 @@ class Habit : Codable, Identifiable {
         case id, name, description, days, time, isCompleted
     }
     
-    init(name: String, description: String, days: String, time: Date) {
+    init(name: String, description: String, days: String, time: Date, isCompleted: Bool = false) {
         self.name = name
         self.description = description
         self.days = days
         self.time = time
+        self.isCompleted = isCompleted
         
     }
     
@@ -40,6 +41,7 @@ class Habit : Codable, Identifiable {
         self.description = try container.decode(String.self, forKey: .description)
         self.days = try container.decode(String.self, forKey: .days)
         self.time = try container.decode(Date.self, forKey: .time)
+        
         
     }
 }

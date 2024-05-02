@@ -11,14 +11,28 @@ import FirebaseFirestore
 
 class HabitsViewModel: ObservableObject {
     @Published var habits: [Habit] = []
-  
+    
     
     private var db = Firestore.firestore()
     
     init() {
         loadHabits()
     }
-
+    
+    func updateHabitCompletion(_ habit: Habit) {
+        guard let documentId = habit.id else { return }
+        db.collection("habit").document(documentId).updateData([
+            "isCompleted": habit.isCompleted
+        ]) { error in
+            if let error = error {
+                print("Error updating document: \(error)")
+            } else {
+                print("Habit completion updated successfully.")
+            }
+        }
+    }
+    
+    
     //    func addHabit(habit: Habit) {
     //        let newHabit = Habit(name: name, description: description, day: selectedDay, time: selectedTime)
     //        habits.append(newHabit)
@@ -43,7 +57,7 @@ class HabitsViewModel: ObservableObject {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                DispatchQueue.main.async { 
+                DispatchQueue.main.async {
                     self.habits = querySnapshot!.documents.compactMap { document in
                         let habit = try? document.data(as: Habit.self)
                         habit?.id = document.documentID  // Tilldela Firestore dokument-ID
@@ -53,4 +67,5 @@ class HabitsViewModel: ObservableObject {
             }
         }
     }
+    
 }
