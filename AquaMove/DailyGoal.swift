@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct DailyGoal: Identifiable {
+struct DailyGoal: Identifiable, Codable {
     var id: UUID = UUID()
     var day: String
     var date: Date
     var goalsCompleted : Bool
+    
+    
 }
+
+

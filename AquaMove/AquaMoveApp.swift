@@ -40,10 +40,5 @@ struct AquaMoveApp: App {
             SplashScreenView()
         }
     }
-    
-    func configureTabBar() {
-        UITabBar.appearance().barTintColor = UIColor(red: 93/255, green: 197/255, blue: 182/255, alpha: 1)
-        UITabBar.appearance().unselectedItemTintColor = UIColor.black
-    }
 }
 

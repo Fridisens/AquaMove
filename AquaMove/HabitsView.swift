@@ -17,8 +17,7 @@ struct HabitsView: View {
     let db = Firestore.firestore()
     
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .bottomTrailing) {
+            NavigationStack {
                 List {
                     ForEach(viewModel.habits, id: \.id) { habit in
                         VStack(alignment: .leading) {
@@ -38,39 +37,23 @@ struct HabitsView: View {
                                     habit.isCompleted = newValue
                                     viewModel.updateHabitCompletion(habit)
                                 }
-                                ))
+                            ))
                         }
                     }
                 }
-                
-                Button(action: {
-                    showingAddHabit = true
-                }) {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .frame(width: 56, height: 56)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .clipShape(Circle())
-                        .padding()
-                }
-            }
-            .sheet(isPresented: $showingAddHabit) {
-                AddHabitView(habits: $viewModel.habits)
-            }
-            .navigationTitle("Lista på vanor")
-        }
-    }
-    func loadHabits() {
-            db.collection("habit").getDocuments { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                   let habits = querySnapshot!.documents.compactMap { document in
-                        let habit = try? document.data(as: Habit.self)
-                        habit?.id = document.documentID  // Tilldela Firestore dokument-ID
-                        return habit
+                .navigationTitle("Lista på vanor")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            showingAddHabit = true
+                        }) {
+                            Image(systemName: "plus")
+                                .font(.system(size: 24)) 
+                        }
                     }
+                }
+                .sheet(isPresented: $showingAddHabit) {
+                    AddHabitView(habits: $viewModel.habits)
                 }
             }
         }
