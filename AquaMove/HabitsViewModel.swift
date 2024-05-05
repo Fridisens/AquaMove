@@ -17,6 +17,7 @@ class HabitsViewModel: ObservableObject {
     
     init() {
         loadHabits()
+      
     }
     
     func updateHabitCompletion(_ habit: Habit) {
@@ -31,26 +32,7 @@ class HabitsViewModel: ObservableObject {
             }
         }
     }
-    
-    
-    //    func addHabit(habit: Habit) {
-    //        let newHabit = Habit(name: name, description: description, day: selectedDay, time: selectedTime)
-    //        habits.append(newHabit)
-    //        do {
-    //            try db.collection("habit").document(newHabit.id ?? UUID().uuidString).setData(from: newHabit) { error in
-    //                if let error = error {
-    //                    print("Error adding document: \(error.localizedDescription)")
-    //                } else {
-    //                    print("Document successfully added.")
-    //                }
-    //            }
-    //        } catch let error {
-    //            print("Error writing habit to Firestore: \(error.localizedDescription)")
-    //        }
-    //
-    //    }
-    
-    
+
     
     func loadHabits() {
         db.collection("habit").getDocuments { (querySnapshot, err) in
@@ -61,6 +43,8 @@ class HabitsViewModel: ObservableObject {
                     self.habits = querySnapshot!.documents.compactMap { document in
                         let habit = try? document.data(as: Habit.self)
                         habit?.id = document.documentID  // Tilldela Firestore dokument-ID
+                        print("Loaded isCompleted: \(habit?.isCompleted ?? false)")
+
                         return habit
                     }
                 }

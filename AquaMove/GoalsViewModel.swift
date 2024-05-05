@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+
 
 class GoalsViewModel: ObservableObject {
     
@@ -27,14 +30,16 @@ class GoalsViewModel: ObservableObject {
         }
     }
     
-    func loadGoals() {
-           // Här skulle du ladda alla tillgängliga vanor från din databas eller annan datakälla
-       }
-
-       func loadGoals(for date: Date) {
-           // Filtrera dailyGoals för att matcha valt datum
-           goalsForSelectedDay = dailyGoals.filter { Calendar.current.isDate($0.date, inSameDayAs: date) }
-       }
-   }
-
-
+    func loadGoals(for date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"  // Svenska veckodagar
+        let weekday = dateFormatter.string(from: date)
+        
+        print("Loading goals for weekday: \(weekday)")
+        
+        // Filtrera dailyGoals för att matcha veckodagen
+        goalsForSelectedDay = dailyGoals.filter { $0.day == weekday }
+        
+        print("Found \(goalsForSelectedDay?.count ?? 0) goals for \(weekday)")
+    }
+}
