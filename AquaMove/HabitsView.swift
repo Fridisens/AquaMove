@@ -31,13 +31,13 @@ struct HabitsView: View {
                             } else if let wellnessHabit = habit as? WellnessHabit {
                                 Text("Träningslängd: \(wellnessHabit.sessionLength, specifier: "%.0f") minuter")
                             }
-                            Toggle("Utförd", isOn: Binding(
-                                get: {habit.isCompleted },
-                                set: { newValue in
-                                    habit.isCompleted = newValue
-                                    viewModel.updateHabitCompletion(habit)
-                                }
-                            ))
+//                            Toggle("Utförd", isOn: Binding(
+//                                get: {habit.isCompleted },
+//                                set: { newValue in
+//                                    habit.isCompleted = newValue
+//                                    viewModel.updateHabitCompletion(habit)
+//                                }
+//                            ))
                         }
                     }
                 }

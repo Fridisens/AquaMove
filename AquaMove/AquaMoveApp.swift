@@ -34,10 +34,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct AquaMoveApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
+    @StateObject var viewModelHabit = HabitsViewModel()
     var body: some Scene {
         WindowGroup {
             SplashScreenView()
+                .environmentObject(viewModelHabit)
         }
     }
 }
