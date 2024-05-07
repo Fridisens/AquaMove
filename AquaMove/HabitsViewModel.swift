@@ -11,14 +11,39 @@ import FirebaseFirestore
 
 class HabitsViewModel: ObservableObject {
     @Published var habits: [Habit] = []
-    
-    
     private var db = Firestore.firestore()
+    var listener: ListenerRegistration?
     
     init() {
+        
         loadHabits()
       
     }
+    
+//    deinit {
+//           listenerRegistration?.remove()  // Glöm inte att ta bort lyssnaren när vyn inte längre används
+//        }
+//    
+//    func setupHabitListener() {
+//        listenerRegistration = db.collection("habit").addSnapshotListener { [weak self] snapshot, error in
+//            guard let self = self else { return }
+//            if let error = error {
+//                print("Error getting documents: \(error)")
+//                return
+//            }
+//            guard let documents = snapshot?.documents else {
+//                print("No documents")
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                self.habits = documents.compactMap { document in
+//                    try? document.data(as: Habit.self)
+//                }
+//            }
+//        }
+//    }
+        
+    
     
     func updateHabitCompletion(_ habit: Habit, on date: Date) {
         guard let documentId = habit.id else { return }
@@ -45,18 +70,16 @@ class HabitsViewModel: ObservableObject {
         }
     }
 
-    
     func loadHabits() {
-        db.collection("habit").getDocuments { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
+        db.collection("habit").addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else if let querySnapshot = querySnapshot {
                 DispatchQueue.main.async {
-                    self.habits = querySnapshot!.documents.compactMap { document in
+                    self.habits = querySnapshot.documents.compactMap { document in
                         let habit = try? document.data(as: Habit.self)
-                        if let habit = habit {
-                            print("Loaded habit: \(habit)")
-                            habit.id = document.documentID
+                        if var habit = habit {
+                            habit.id = document.documentID  // Sätt till documentID efter dekodning
                             return habit
                         }
                         return nil
@@ -66,6 +89,31 @@ class HabitsViewModel: ObservableObject {
             }
         }
     }
+    
+    func stopListening() {
+        listener?.remove()  // Anropa detta när du inte längre behöver lyssna på förändringar
+    }
+    
+//    func loadHabits() {
+//        db.collection("habit").getDocuments { (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//                DispatchQueue.main.async {
+//                    self.habits = querySnapshot!.documents.compactMap { document in
+//                        let habit = try? document.data(as: Habit.self)
+//                        if let habit = habit {
+//                            print("Loaded habit: \(habit)")
+//                            habit.id = document.documentID
+//                            return habit
+//                        }
+//                        return nil
+//                    }
+//                    print("Total habits loaded: \(self.habits.count)")
+//                }
+//            }
+//        }
+//    }
     
     func updateStreaks(for habit: Habit) {
         let sortedDates = habit.completedDates.sorted()

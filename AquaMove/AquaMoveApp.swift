@@ -18,7 +18,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
         
-        configureTabBar()
+        //configureTabBar()
         print("Firebase configured successfully.")
         return true
         
