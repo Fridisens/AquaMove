@@ -54,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		59868C142BE9743600C062A7 /* ParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
+		59868C182BEAB79800C062A7 /* .gitignore.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = .gitignore.md; sourceTree = "<group>"; };
 		5992BAB72BD8ED7200D27B94 /* AquaMove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AquaMove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5992BABA2BD8ED7200D27B94 /* AquaMoveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AquaMoveApp.swift; sourceTree = "<group>"; };
 		5992BABE2BD8ED7300D27B94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -154,6 +155,7 @@
 				5992BAC02BD8ED7300D27B94 /* Preview Content */,
 				5992BB172BE1281400D27B94 /* SimpleDayView.swift */,
 				59868C142BE9743600C062A7 /* ParentView.swift */,
+				59868C182BEAB79800C062A7 /* .gitignore.md */,
 			);
 			path = AquaMove;
 			sourceTree = "<group>";
