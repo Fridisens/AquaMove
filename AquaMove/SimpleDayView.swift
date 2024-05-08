@@ -19,7 +19,6 @@ struct SimpleDayView: View {
             DaySelection(name: "Söndag", isSelected: false)
         ]
         
-        
         var body: some View {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                 ForEach($days.indices, id: \.self) { index in
@@ -36,8 +35,3 @@ struct SimpleDayView: View {
             }
         }
     }
-    
-    #Preview {
-        SimpleDayView()
-    }
-
