@@ -12,7 +12,6 @@ struct AddHabitView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Binding var habits: [Habit]
-    
     @State private var days: [DaySelection] = [
         "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"
     ].map { DaySelection(name: $0, isSelected: false) }
@@ -24,15 +23,10 @@ struct AddHabitView: View {
     @State private var goalText: String = ""
     
     let db = Firestore.firestore()
-    
-    
-    
     var columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
-    
     
     var body: some View {
         NavigationView {
@@ -81,7 +75,6 @@ struct AddHabitView: View {
         }
     }
     
-    
     func addHabit() {
         let selectedDays = days.filter { $0.isSelected }.map { $0.name }.joined(separator: ", ")
         let newHabit = Habit(name: name, description: description, days: selectedDays, time: selectedTime)
@@ -97,9 +90,5 @@ struct AddHabitView: View {
         } catch let error {
             print("Error writing habit to Firestore: \(error.localizedDescription)")
         }
-        
     }
-    
-    
-    
 }
