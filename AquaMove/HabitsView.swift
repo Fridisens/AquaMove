@@ -10,10 +10,9 @@ import Firebase
 
 struct HabitsView: View {
     @ObservedObject var viewModel = HabitsViewModel()
-    var habits: [Habit] = []
-    
     @State private var showingAddHabit = false
     
+    var habits: [Habit] = []
     let db = Firestore.firestore()
     
     var body: some View {
@@ -52,6 +51,4 @@ struct HabitsView: View {
             }
         }
     }
-    
-    
 }
