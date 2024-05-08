@@ -12,14 +12,11 @@ class WaterIntakeHabit : Habit {
     var goal: Double
     var unit: String = "liter"
     
-    
     init(name: String, description: String, goal: Double, days: String, time: Date) {
         self.goal = goal
       
-        
         super.init(name: name, description: description, days: days, time: time)
     }
-
     
     required init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
