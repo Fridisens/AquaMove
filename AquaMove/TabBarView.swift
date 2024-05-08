@@ -21,7 +21,6 @@ struct TabBarView: View {
                     Label("Mina mål", systemImage: "heart")
                 }
                 
-            
             HabitsView()
                 .tabItem {
                     Label("Vanor", systemImage: "drop")
@@ -31,8 +30,3 @@ struct TabBarView: View {
             
         }
     }
-
-
-#Preview {
-    TabBarView()
-}
