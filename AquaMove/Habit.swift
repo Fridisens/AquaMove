@@ -11,15 +11,13 @@ import FirebaseFirestoreSwift
 
 
 class Habit : Codable, Identifiable {
-    
-    //var id: String = UUID().uuidString
     var id: String?
     var name : String
     var description : String
     var days : String
     var time : Date
-    var isCompleted: Bool = false  // Lägg till denna rad
-    var completedDates: [Date] = [] // Datum när vanan är utförd
+    var isCompleted: Bool = false
+    var completedDates: [Date] = []
     var currentStreak: Int = 0
     var longestStreak: Int = 0
     
@@ -30,7 +28,7 @@ class Habit : Codable, Identifiable {
        }
     
     init(name: String, description: String, days: String, time: Date, isCompleted: Bool = false, completedDates: [Date] = [], currentStreak: Int = 0, longestStreak: Int = 0) {
-        self.id = UUID().uuidString  // Tilldela ett unikt ID direkt
+        self.id = UUID().uuidString
         self.name = name
             self.description = description
             self.days = days
@@ -49,8 +47,7 @@ class Habit : Codable, Identifiable {
             self.days = try container.decode(String.self, forKey: .days)
             self.time = try container.decode(Date.self, forKey: .time)
             self.isCompleted = try container.decode(Bool.self, forKey: .isCompleted)
-            //self.completedDates = try container.decode([Date].self, forKey: .completedDates)
-        let completedTimestamps = try container.decode([TimeInterval].self, forKey: .completedDates)
+            let completedTimestamps = try container.decode([TimeInterval].self, forKey: .completedDates)
             self.completedDates = completedTimestamps.map(Date.init(timeIntervalSince1970:))
             self.currentStreak = try container.decode(Int.self, forKey: .currentStreak)
             self.longestStreak = try container.decode(Int.self, forKey: .longestStreak)
