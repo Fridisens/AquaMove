@@ -9,9 +9,7 @@ import SwiftUI
 
 struct GoalsView: View {
     @ObservedObject var viewModelHabit: HabitsViewModel
-    //@ObservedObject var viewModel = HabitsViewModel()
-    //@ObservedObject var viewModel: GoalsViewModel
-    @State private var selectedDate = Date()  // Håller reda på det valda datumet
+    @State private var selectedDate = Date()
         
     var body: some View {
         NavigationView {
@@ -40,8 +38,8 @@ struct GoalsView: View {
                                 } else if let wellnessHabit = habit as? WellnessHabit {
                                     Text("Träningslängd: \(wellnessHabit.sessionLength, specifier: "%.0f") minuter")
                                 }
-                                Text("Aktuell streak: \(habit.currentStreak) dagar")  // Visa aktuell streak
-                                Text("Längsta streak: \(habit.longestStreak) dagar")  // Visa längsta streak
+                                Text("Aktuell streak: \(habit.currentStreak) dagar")
+                                Text("Längsta streak: \(habit.longestStreak) dagar")
                             }
                             Spacer()
                             Button(action: {
