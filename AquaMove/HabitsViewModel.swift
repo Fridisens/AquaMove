@@ -20,30 +20,6 @@ class HabitsViewModel: ObservableObject {
         
     }
     
-    //    deinit {
-    //           listenerRegistration?.remove()  // Glöm inte att ta bort lyssnaren när vyn inte längre används
-    //        }
-    //
-    //    func setupHabitListener() {
-    //        listenerRegistration = db.collection("habit").addSnapshotListener { [weak self] snapshot, error in
-    //            guard let self = self else { return }
-    //            if let error = error {
-    //                print("Error getting documents: \(error)")
-    //                return
-    //            }
-    //            guard let documents = snapshot?.documents else {
-    //                print("No documents")
-    //                return
-    //            }
-    //            DispatchQueue.main.async {
-    //                self.habits = documents.compactMap { document in
-    //                    try? document.data(as: Habit.self)
-    //                }
-    //            }
-    //        }
-    //    }
-    
-    
     func updateHabitCompletion(_ habit: Habit, on date: Date) {
         guard let documentId = habit.id else { return }
         let alreadyCompleted = habit.completedDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
@@ -55,7 +31,6 @@ class HabitsViewModel: ObservableObject {
             habit.completedDates.append(date)
             updateStreaks(for: habit)
         }
-        
         db.collection("habit").document(documentId).updateData([
             "completedDates": habit.completedDates.map { $0.timeIntervalSince1970 },
             "currentStreak": habit.currentStreak,
@@ -78,7 +53,7 @@ class HabitsViewModel: ObservableObject {
                     self.habits = querySnapshot.documents.compactMap { document in
                         let habit = try? document.data(as: Habit.self)
                         if let habit = habit {
-                            habit.id = document.documentID  // Sätt till documentID efter dekodning
+                            habit.id = document.documentID
                             return habit
                         }
                         return nil
@@ -90,14 +65,13 @@ class HabitsViewModel: ObservableObject {
     }
     
     func stopListening() {
-        listener?.remove()  // Anropa detta när du inte längre behöver lyssna på förändringar
+        listener?.remove()
     }
     
     func deleteHabit(at offsets: IndexSet) {
         for index in offsets {
             let habit = habits[index]
             if let documentId = habit.id {
-                // Ta bort från Firestore
                 db.collection("habit").document(documentId).delete { error in
                     if let error = error {
                         print("Error removing document: \(error)")
@@ -105,34 +79,12 @@ class HabitsViewModel: ObservableObject {
                         print("Habit successfully removed")
                     }
                 }
-                // Ta bort från lokal array
                 DispatchQueue.main.async {
                     self.habits.remove(atOffsets: offsets)
                 }
             }
         }
     }
-        
-        //    func loadHabits() {
-        //        db.collection("habit").getDocuments { (querySnapshot, err) in
-        //            if let err = err {
-        //                print("Error getting documents: \(err)")
-        //            } else {
-        //                DispatchQueue.main.async {
-        //                    self.habits = querySnapshot!.documents.compactMap { document in
-        //                        let habit = try? document.data(as: Habit.self)
-        //                        if let habit = habit {
-        //                            print("Loaded habit: \(habit)")
-        //                            habit.id = document.documentID
-        //                            return habit
-        //                        }
-        //                        return nil
-        //                    }
-        //                    print("Total habits loaded: \(self.habits.count)")
-        //                }
-        //            }
-        //        }
-        //    }
         
         func updateStreaks(for habit: Habit) {
             let sortedDates = habit.completedDates.sorted()
@@ -149,10 +101,7 @@ class HabitsViewModel: ObservableObject {
                 longestStreak = max(longestStreak, currentStreak)
                 lastDate = date
             }
-            
             habit.currentStreak = currentStreak
             habit.longestStreak = longestStreak
         }
-        
     }
-
