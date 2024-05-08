@@ -85,23 +85,23 @@ class HabitsViewModel: ObservableObject {
             }
         }
     }
+    
+    func updateStreaks(for habit: Habit) {
+        let sortedDates = habit.completedDates.sorted()
+        var currentStreak = 0
+        var longestStreak = 0
+        var lastDate: Date?
         
-        func updateStreaks(for habit: Habit) {
-            let sortedDates = habit.completedDates.sorted()
-            var currentStreak = 0
-            var longestStreak = 0
-            var lastDate: Date?
-            
-            for date in sortedDates {
-                if let lastDate = lastDate, Calendar.current.isDate(date, inSameDayAs: Calendar.current.date(byAdding: .day, value: 1, to: lastDate)!) {
-                    currentStreak += 1
-                } else {
-                    currentStreak = 1
-                }
-                longestStreak = max(longestStreak, currentStreak)
-                lastDate = date
+        for date in sortedDates {
+            if let lastDate = lastDate, Calendar.current.isDate(date, inSameDayAs: Calendar.current.date(byAdding: .day, value: 1, to: lastDate)!) {
+                currentStreak += 1
+            } else {
+                currentStreak = 1
             }
-            habit.currentStreak = currentStreak
-            habit.longestStreak = longestStreak
+            longestStreak = max(longestStreak, currentStreak)
+            lastDate = date
         }
+        habit.currentStreak = currentStreak
+        habit.longestStreak = longestStreak
     }
+}

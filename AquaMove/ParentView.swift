@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ParentView: View {
     @StateObject var viewModelHabit = HabitsViewModel()
-
+    
     var body: some View {
         TabView {
             GoalsView(viewModelHabit: viewModelHabit)
