@@ -11,12 +11,12 @@ import SwiftUI
 class WellnessHabit : Habit {
     var sessionLength: Double
     var unit: String = "minuter"
-   
+    
     init(name: String, description: String, sessionLength: Double, days: String, time: Date) {
         self.sessionLength = sessionLength
         
         super.init(name: name, description: description, days: days, time: time)
-  
+        
     }
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
