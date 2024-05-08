@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GoalRow: View {
     var goal: DailyGoal
-
+    
     var body: some View {
         HStack {
             Text(goal.day)

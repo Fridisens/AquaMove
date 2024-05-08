@@ -10,7 +10,7 @@ import SwiftUI
 struct GoalsView: View {
     @ObservedObject var viewModelHabit: HabitsViewModel
     @State private var selectedDate = Date()
-        
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -25,7 +25,7 @@ struct GoalsView: View {
                 let calendar = Calendar.current
                 let dayNumber = calendar.component(.weekday, from: selectedDate) - 1
                 let todayName = dayName(from: dayNumber)
-
+                
                 List {
                     ForEach(viewModelHabit.habits.filter { $0.days.contains(todayName) }, id: \.id) { habit in
                         HStack {
@@ -57,7 +57,7 @@ struct GoalsView: View {
             .navigationTitle("Dina vanor")
         }
     }
-
+    
     func dayName(from dayNumber: Int) -> String {
         let days = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"]
         return days[dayNumber]

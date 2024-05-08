@@ -12,8 +12,6 @@ struct DailyGoal: Identifiable, Codable {
     var day: String
     var date: Date
     var goalsCompleted : Bool
-    
-    
 }
 
 
