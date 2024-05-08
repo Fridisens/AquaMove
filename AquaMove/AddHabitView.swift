@@ -58,11 +58,6 @@ struct AddHabitView: View {
                     }
                 }
                 
-                Section(header: Text("Välj tid")) {
-                    DatePicker("Tid", selection: $selectedTime, displayedComponents: .hourAndMinute)
-                        .labelsHidden()
-                }
-                
                 Button("Lägg till vana") {
                     addHabit()
                     presentationMode.wrappedValue.dismiss()
