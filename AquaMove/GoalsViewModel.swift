@@ -13,7 +13,7 @@ import FirebaseFirestoreSwift
 class GoalsViewModel: ObservableObject {
     
     @Published var dailyGoals: [DailyGoal] = []
-    @Published var goalsForSelectedDay: [DailyGoal]?  // Lagrar vanor för valt datum
+    @Published var goalsForSelectedDay: [DailyGoal]?
     
     init(){
         setupGoals()
@@ -32,12 +32,12 @@ class GoalsViewModel: ObservableObject {
     
     func loadGoals(for date: Date) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"  // Svenska veckodagar
+        dateFormatter.dateFormat = "EEEE"
         let weekday = dateFormatter.string(from: date)
         
         print("Loading goals for weekday: \(weekday)")
         
-        // Filtrera dailyGoals för att matcha veckodagen
+        // Filter dailyGoals to match weekdays
         goalsForSelectedDay = dailyGoals.filter { $0.day == weekday }
         
         print("Found \(goalsForSelectedDay?.count ?? 0) goals for \(weekday)")
